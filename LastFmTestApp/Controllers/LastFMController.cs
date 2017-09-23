@@ -4,21 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IF.Lastfm.Core.Objects;
+using LastFmTestApp.App_Start;
+using LastFmTestApp.Models.LastFM;
 
 namespace LastFmTestApp.Controllers
 {
-    public class LastFMController : Controller
+    public class LastFmController : Controller
     {
-        [Authorize]
+        [HttpGet]
         public ActionResult LastFmProfile()
         {
-            return View();
+            LastFmProfile lastFmProfile = new LastFmProfile();
+            return View(lastFmProfile);
         }
 
-        [Authorize]
-        public ActionResult Playlists()
+        [HttpPost]
+        public ActionResult CreateOrUpdateLastFmProfile(LastFmProfile lastFmProfile)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                LastFmUsersTmpStorage.CreateOrUpdateUser(lastFmProfile);
+                return RedirectToAction("Playlists");
+            }
+
+            return View(lastFmProfile);
         }
 
         [Authorize]
@@ -30,9 +39,9 @@ namespace LastFmTestApp.Controllers
         [Authorize]
         public ActionResult Album(string playlistId)
         {
-            var response = client.Album.GetInfoAsync("Grimes", "Visions");
-            LastAlbum visions = response.Content;
-            return View();
+            var response = LastFm.Client.Album.GetInfoAsync("Grimes", "Visions");
+            LastAlbum album = response.Result.Content;
+            return View(album);
         }
     }
 }

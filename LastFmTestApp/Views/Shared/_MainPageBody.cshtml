@@ -4,7 +4,7 @@
 <div class="row">
     @if (Request.IsAuthenticated)
     {
-        <input type="button" class="btn btn-default" value="Register" onclick="location.href='@Url.Action("Playlists", "LastFM")'" />
+        <input type="button" class="btn btn-default" value="Playlist" onclick="location.href = '@Url.Action("Playlists", "LastFm")'" />
     }
     else
     {

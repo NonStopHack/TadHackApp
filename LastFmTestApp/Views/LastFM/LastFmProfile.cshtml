@@ -1,0 +1,13 @@
+﻿@model LastFmTestApp.Models.LastFM.LastFmProfile
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Last FM credentials</h2>
+
+@Html.EditorFor(m => m.Email)
+@Html.EditorFor(m => m.Password)
+
+

@@ -1,0 +1,23 @@
+﻿@model IF.Lastfm.Core.Objects.LastAlbum
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+
+@Html.DisplayFor(m => m.Name)
+@Html.DisplayFor(m => m.ArtistName)
+@{
+    <table id="tracks">
+        <tbody>
+            @foreach (var track in Model.Tracks)
+            {
+                <tr>
+                    <td>@track.AlbumName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+ }

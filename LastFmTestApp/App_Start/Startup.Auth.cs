@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Configuration;
 using IF.Lastfm.Core.Api;
+using LastFmTestApp.App_Start;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -50,6 +51,7 @@ namespace LastFmTestApp
             string apikey = WebConfigurationManager.AppSettings["apikey"];
             string apisecret = WebConfigurationManager.AppSettings["apisecret"];
             var client = new LastfmClient(apikey, apisecret);
+            LastFm.Client = client;
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
