@@ -1,0 +1,15 @@
+﻿@using System.ServiceModel
+@using System.Web.UI.WebControls
+@using Microsoft.AspNet.Identity
+<div class="row">
+    @if (Request.IsAuthenticated)
+    {
+        <input type="button" class="btn btn-default" value="Register" onclick="location.href='@Url.Action("Playlists", "LastFM")'" />
+    }
+    else
+    {
+        <input type="button" class="btn btn-default" value="Register"  onclick="location.href='@Url.Action("Register", "Account")'" />
+        <input type="button" class="btn btn-default" value="Login" onclick="location.href='@Url.Action("Login", "Account")'" />
+    }
+</div>
+
